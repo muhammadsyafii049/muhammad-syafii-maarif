@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Syafi'i Teknisi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #00b4d8;
+      color: white;
+    }
+    button {
+      background: #0077b6;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005f8a;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Panel Admin - Syafi'i Teknisi Printer & Komputer</h1>
+  </header>
+
+  <main>
+    <h2>Daftar Servis Masuk</h2>
+    <p>Fitur ini masih simulasi (data sementara). Nanti bisa disimpan otomatis ke Google Sheet atau database kecil.</p>
+
+    <table id="serviceTable">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Printer</th>
+          <th>Keluhan</th>
+          <th>Kontak</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button onclick="loadDemo()">Muat Data Contoh</button>
+    </div>
+  </main>
+
+  <script>
+    function loadDemo() {
+      const demoData = [
+        {nama: 'Ahmad', printer: 'Epson L120', keluhan: 'Paper jam', kontak: '0878xxxxxxx'},
+        {nama: 'Dewi', printer: 'Canon G2000', keluhan: 'Tidak mendeteksi tinta', kontak: '0852xxxxxxx'},
+        {nama: 'Rizal', printer: 'Epson L3210', keluhan: 'Blinking 2x 5x', kontak: '0813xxxxxxx'}
+      ];
+
+      const tbody = document.querySelector('#serviceTable tbody');
+      tbody.innerHTML = '';
+      demoData.forEach(item => {
+        const row = `<tr>
+          <td>${item.nama}</td>
+          <td>${item.printer}</td>
+          <td>${item.keluhan}</td>
+          <td>${item.kontak}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+  </script>
+
+</body>
+</html>
