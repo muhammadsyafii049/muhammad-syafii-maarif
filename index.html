@@ -10,7 +10,7 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f4f6f8;
+      background: #f0f4f8;
       color: #222;
     }
     header {
@@ -20,9 +20,23 @@
       color: white;
     }
     header img {
-      width: 150px;
+      width: 120px;
       border-radius: 50%;
       margin-bottom: 15px;
+    }
+    nav {
+      background: #023e8a;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     section {
       max-width: 800px;
@@ -35,48 +49,139 @@
     h1, h2 {
       text-align: center;
     }
-    .contact {
+    .contact, .service-form {
       text-align: center;
       margin-top: 20px;
     }
     .contact a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #00b4d8;
+      color: white;
       text-decoration: none;
-      color: #0077b6;
+      border-radius: 8px;
       font-weight: bold;
+    }
+    .contact a:hover {
+      background: #0077b6;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #00b4d8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0077b6;
     }
     footer {
       text-align: center;
       padding: 15px;
-      background: #0077b6;
+      background: #023e8a;
       color: white;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="logo-circle.png" alt="Logo Syafi'i Teknisi">
     <h1>Syafi'i Teknisi Printer & Komputer</h1>
     <p>Profesional, cepat, dan terpercaya – melayani Hulu Sungai Selatan dan sekitarnya</p>
   </header>
 
-  <section>
-    <h2>Profil Singkat</h2>
-    <p>Halo, saya <strong>Muhammad Syafi'i Ma’arif</strong>, seorang teknisi printer dan komputer dengan pengalaman lebih dari <strong>1,3 tahun</strong> di bidang perbaikan dan perawatan perangkat kantor. 
-    Spesialis saya adalah printer Epson dan Canon, sementara untuk printer HP saya masih dalam tahap pengembangan pengalaman lebih lanjut.</p>
+  <nav>
+    <a href="#profil">Profil</a>
+    <a href="#service">Form Service</a>
+    <a href="#login">Login</a>
+  </nav>
 
-    <p>Saya siap membantu memperbaiki berbagai masalah pada printer Anda — mulai dari error, hasil cetak buram, tidak mendeteksi tinta, hingga reset software printer. 
-    Saya juga memberikan layanan maintenance komputer dasar.</p>
+  <section id="profil">
+    <h2>Profil Singkat</h2>
+    <p>Halo, saya <strong>Muhammad Syafi'i Ma’arif</strong>, teknisi printer dan komputer dengan pengalaman lebih dari <strong>1,3 tahun</strong> di bidang perbaikan perangkat kantor. 
+    Saya spesialis printer Epson dan Canon, serta sedang mengembangkan pengalaman untuk printer HP.</p>
+
+    <p>Saya melayani perbaikan error printer, hasil cetak buram, tinta tidak terdeteksi, reset printer, dan juga perawatan komputer dasar.</p>
 
     <div class="contact">
-      <h3>Hubungi Saya</h3>
       <p>📍 Alamat: Jl. Tawia RT 01 RW 01 No. 66, Kec. Angkinang, Hulu Sungai Selatan, Kalsel 71291</p>
-      <p>📞 WhatsApp: <a href="https://wa.me/6287841744895" target="_blank">0878-4174-4895</a></p>
+      <a href="https://wa.me/6287841744895" target="_blank">💬 Hubungi via WhatsApp</a>
     </div>
+  </section>
+
+  <section id="service">
+    <h2>Form Permintaan Service</h2>
+    <form class="service-form" onsubmit="sendServiceRequest(event)">
+      <label>Nama Lengkap:</label>
+      <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+
+      <label>Jenis Printer:</label>
+      <input type="text" id="printer" placeholder="Contoh: Epson L120" required>
+
+      <label>Keluhan:</label>
+      <textarea id="keluhan" rows="4" placeholder="Jelaskan keluhan printer Anda..." required></textarea>
+
+      <label>Nomor WhatsApp:</label>
+      <input type="text" id="kontak" placeholder="Contoh: 0878xxxxxxx" required>
+
+      <button type="submit">Kirim Permintaan</button>
+    </form>
+  </section>
+
+  <section id="login">
+    <h2>Login Teknisi</h2>
+    <form class="service-form" onsubmit="loginAdmin(event)">
+      <label>Username:</label>
+      <input type="text" id="username" required>
+
+      <label>Password:</label>
+      <input type="password" id="password" required>
+
+      <button type="submit">Masuk</button>
+    </form>
   </section>
 
   <footer>
     © 2025 Syafi'i Teknisi Printer & Komputer | syafiiteknisihss.duckdns.org
   </footer>
+
+  <script>
+    // Kirim pesan ke WhatsApp
+    function sendServiceRequest(event) {
+      event.preventDefault();
+      const nama = document.getElementById('nama').value;
+      const printer = document.getElementById('printer').value;
+      const keluhan = document.getElementById('keluhan').value;
+      const kontak = document.getElementById('kontak').value;
+      const pesan = `Halo, saya ${nama}. Saya ingin servis printer ${printer}. Keluhan: ${keluhan}. Kontak saya: ${kontak}.`;
+      window.open(`https://wa.me/6287841744895?text=${encodeURIComponent(pesan)}`, '_blank');
+    }
+
+    // Login admin sederhana (bisa dikembangkan nanti)
+    function loginAdmin(event) {
+      event.preventDefault();
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if (user === "admin" && pass === "syafiiteknisi") {
+        alert("Login berhasil! (fitur admin akan datang)");
+      } else {
+        alert("Username atau password salah!");
+      }
+    }
+  </script>
+
 </body>
 </html>
